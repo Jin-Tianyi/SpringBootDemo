@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap 实例 - 标签式的导航菜单</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/marked/0.7.0/marked.js"></script>
+  <style>
+    body {
+      background-color: #3498DB;
+      overflow: hidden;
+    }
+
+    div {
+      margin: 0px auto;
+    }
+
+    .drop {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      top: -30px;
+      margin: 0 auto;
+      background: #FFF;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      border-radius: 20px;
+      -moz-animation-name: drip;
+      -webkit-animation-name: drip;
+      animation-name: drip;
+      -moz-animation-timing-function: cubic-bezier(1,0,.91,.19);
+      -webkit-animation-timing-function: cubic-bezier(1,0,.91,.19);
+      animation-timing-function: cubic-bezier(1,0,.91,.19);
+      -moz-animation-duration: 2s;
+      -webkit-animation-duration: 2s;
+      animation-duration: 2s;
+      -moz-animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+
+    .drop:before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 30px solid rgba(255,255,255,1);
+      top: -22px;
+    }
+
+    .wave {
+      position: relative;
+      opacity: 0;
+      top: 0;
+      width: 2px;
+      height: 1px;
+      border: #FFF 7px solid;
+      -moz-border-radius: 300px / 150px;
+      -webkit-border-radius: 300px / 150px;
+      border-radius: 300px / 150px;
+      -moz-animation-name: ripple;
+      -webkit-animation-name: ripple;
+      animation-name: ripple;
+      -moz-animation-delay: 2s;
+      -webkit-animation-delay: 2s;
+      animation-delay: 2s;
+      -moz-animation-duration: 2s;
+      -webkit-animation-duration: 2s;
+      animation-duration: 2s;
+      -moz-animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+
+    .wave:after {
+      content: "";
+      position: absolute;
+      opacity: 0;
+      top: -5px;
+      left: -5px;
+      width: 2px;
+      height: 1px;
+      border: #FFF 5px solid;
+      -moz-border-radius: 300px / 150px;
+      -webkit-border-radius: 300px / 150px;
+      border-radius: 300px / 150px;
+      -moz-animation-name: ripple-2;
+      -webkit-animation-name: ripple-2;
+      animation-name: ripple-2;
+      -moz-animation-duration: 2s;
+      -webkit-animation-duration: 2s;
+      animation-duration: 2s;
+      -moz-animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes ripple {
+      from {
+        opacity: 1;
+      }
+      to {
+        width: 600px;
+        height: 300px;
+        border-width: 1px;
+        top: -100px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes ripple-2 {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        width: 200px;
+        height: 100px;
+        border-width: 1px;
+        top: 100px;
+        left: 200px;
+      }
+    }
+
+    @keyframes drip {
+      to {
+        top: 190px;
+      }
+    }
+    .wave-mar{
+      margin: 200px auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<p>标签式的导航菜单</p>
+<script type="text/babel">
+  var rendererMD = new marked.Renderer();
+  marked.setOptions({
+    renderer: rendererMD,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false
+  });//基本设置
+  class Drop extends  React.Component{
+    render(){
+      return <div className="drop">
+      </div>;
+    }
+  }
+
+  class Wave extends  React.Component{
+    render(){
+      return <div className="wave-mar wave">
+      </div>;
+    }
+  }
+  class Content extends  React.Component{
+    constructor(props) {
+      super(props);
+      this.state = {text: this.props.text};
+
+    }
+    render(){
+      return <div>
+        <div dangerouslySetInnerHTML={{ __html: marked(this.state.text) }} ></div>
+        <Drop/>
+        <Wave/>
+      </div>;
+    }
+  }
+  Content.defaultProps = {
+    text:'*斜体文本*\n' +
+            '_斜体文本_\n' +
+            '**粗体文本**\n' +
+            '__粗体文本__\n' +
+            '***粗斜体文本***\n' +
+            '___粗斜体文本___'
+  }
+  ReactDOM.render(
+          <Content />,
+          document.getElementById('example')
+  );
+</script>
+<div id="example" class="parent"></div>
+</body>
+</html>

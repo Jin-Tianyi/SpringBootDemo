@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>哥哥博客文章</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="renderer" content="webkit">
+    <meta name="baidu-site-verification" content="R9XA5lWxu2" />
+    <meta name="author" content="哥哥博客">
+    <meta name="keywords" content="技术分享">
+    <meta name="description" content="技术分享">
+
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/build.css">
+    <link rel="stylesheet" type="text/css" href="../css/activity.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css" >
+    <link rel="stylesheet" type="text/css" href="../css/zzsc.css" >
+    <link rel="stylesheet" type="text/css" href="../css/dlzc.css">
+    <link rel="stylesheet" type="text/css" href="../css/nanoscroller.css">
+
+    <script language="javascript" type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/main.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/popwin.js"></script>
+    <script src="https://cdn.bootcss.com/marked/0.7.0/marked.js"></script>
+    <script language="javascript" type="text/javascript">
+        function ParseMarkDown(){
+            var tittle = 'SpringBoot多环境配置';
+            var text =
+            '#### 一、使用properties\n' +
+            '用法添加多个环境配置文件application-{profile}.properties，在application.properties中激活\n' +
+            '![](https://img2018.cnblogs.com/blog/1911127/202001/1911127-20200114223648759-1988020325.png)\n' +
+            '\n' +
+            '```java\n' +
+            '@SpringBootTest\n' +
+            'class JblogApplicationTests {\n' +
+            '\n' +
+            '    Logger logger = LoggerFactory.getLogger(getClass());\n' +
+            '    @Test\n' +
+            '    void contextLoads() {\n' +
+            '\n' +
+            '        logger.trace("这是trace级别日志----------------------------------------------------------------------------");\n' +
+            '        logger.debug("这是debug级别日志----------------------------------------------------------------------------");\n' +
+            '        logger.info("这是info级别日志----------------------------------------------------------------------------");\n' +
+            '        logger.warn("这是warn级别日志----------------------------------------------------------------------------");\n' +
+            '        logger.error("这是error级别日志----------------------------------------------------------------------------");\n' +
+            '    }\n' +
+            '\n' +
+            '}\n' +
+            '```\n' +
+            'application-dev.properties\n' +
+            '\n' +
+            '```properties\n' +
+            '#控制台打印当前环境中生效的自动配置和未生效的自动配置\n' +
+            'debug=true\n' +
+            'logging.level.com.jty.prj.jblog.JblogApplicationTests=trace\n' +
+            '```\n' +
+            'properties-prod.properties\n' +
+            '\n' +
+            '```properties\n' +
+            '#控制台打印当前环境中生效的自动配置和未生效的自动配置\n' +
+            '#debug=true\n' +
+            'logging.level.com.jty.prj.jblog.JblogApplicationTests=info\n' +
+            '```\n' +
+            'application.properties\n' +
+            '\n' +
+            '```properties\n' +
+            '# 启用dev环境配置\n' +
+            'spring.profiles.active=dev\n' +
+            '```\n' +
+            '![](https://img2018.cnblogs.com/blog/1911127/202001/1911127-20200114225458696-1826867487.png)\n' +
+            '\n' +
+            '\n' +
+            '```properties\n' +
+            '# 启用prod环境配置\n' +
+            'spring.profiles.active=prod\n' +
+            '```\n' +
+            '![](https://img2018.cnblogs.com/blog/1911127/202001/1911127-20200114225244319-1178420804.png)\n' +
+            '\n' +
+            '\n' +
+            '\n' +
+            '#### 二、使用yml\n' +
+            '```yml\n' +
+            'spring:\n' +
+            '  profiles:\n' +
+            '    active: dev\n' +
+            '\n' +
+            '\n' +
+            '---\n' +
+            'logging:\n' +
+            '  level:\n' +
+            '    com:\n' +
+            '      jty:\n' +
+            '        prj:\n' +
+            '          jblog:\n' +
+            '            JblogApplicationTests: trace\n' +
+            'spring:\n' +
+            '  profiles: dev\n' +
+            '\n' +
+            '---\n' +
+            'logging:\n' +
+            '  level:\n' +
+            '    com:\n' +
+            '      jty:\n' +
+            '        prj:\n' +
+            '          jblog:\n' +
+            '            JblogApplicationTests: info\n' +
+            'spring:\n' +
+            '  profiles: prod\n' +
+            '```'
+
+            document.getElementById('article').innerHTML = marked(text);
+            document.getElementById('tittle').innerHTML = tittle;
+        };
+        window.onload = ParseMarkDown;
+    </script>
+       
+</head>
+
+<body style="overflow-x:hidden">
+
+<header id="top" role="banner" class="transition">
+    <div class="container">
+        <div class="navbar-header transition">
+            <a href="../index.html" title="首页"><img src="../images/logo.jpg" alt="哥哥博客" title="首页" /></a>
+        </div>
+        <ul class="nav navbar-nav navbar-left" id="jsddm">
+            <li class="nav-news js-show-menu"><a href="../list.html" target="_blank">随笔</a></li>
+            <li class="nav-news"><a href="../list.html" target="_blank">博客<span class="nums-prompt nums-prompt-topic"></span></a></li>
+            <li class="nav-news"><a href="../list.html" target="_blank">笔记</a></li>
+            <li class="nav-news"><a href="../list.html" target="_blank">分享<span class="nums-prompt"></span></a></li>
+        </ul>
+       <!-- <div class="input-group souIn">
+            <input type="text" class="form-control input-group" >
+            <span class="input-group-addon btn btn-default">搜索</span> 
+        </div>-->
+    </div>
+</header>
+    <div class="row" style="margin-top: 70px;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 zuo">
+            <div class="zuo_left">
+                <span>时间：2018年7月7日</span>
+            </div>
+            <div class="you_left">
+                <span><<  上一篇 </span>
+                <span> 下一篇  >></span>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="zhong">
+                <h1 id="tittle"></h1>
+                <div id="article"></div>
+                <br/>
+                <br/>
+                <p><b><i>革命尚未成功，同志仍需努力！</i></b></p>
+            </div>
+            <div class="di_bu">
+                <p>小站说明：本站仅供学习使用，请在24小时内删除，本人不承担任何相关责任！</p>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+
+<footer class="footer">
+    <div class="container copy-right" style="text-align: center;">
+            <span> Copyright 2018 <a href="../#"> 哥哥博客 </a> 邮箱:17737157627@163.com <img src="../images/pic.gif" style="width: 45px;"></span>
+    </div>
+</footer>
+<script type="text/javascript" src="../js/mouse.js"></script>
+
+</body>
+
+</html>
