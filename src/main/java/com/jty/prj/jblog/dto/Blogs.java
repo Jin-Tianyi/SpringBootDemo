@@ -7,5 +7,5 @@ package com.jty.prj.jblog.dto;
  * @date 20-1-14
  * @todo TODO
  */
-public class Blog {
+public class Blogs {
 }

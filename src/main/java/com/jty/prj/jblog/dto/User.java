@@ -8,6 +8,9 @@ package com.jty.prj.jblog.dto;
  * @todo TODO
  */
 public class User {
+    /**
+     * 主键
+     */
     private Integer uid;
     private String user_number;
     private String user_name;
